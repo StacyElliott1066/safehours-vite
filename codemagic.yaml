@@ -2,14 +2,14 @@ workflows:
   build-ios:
     name: Build iOS
     max_build_duration: 60
-    instance_type: mac_mini
+    instance_type: mac_pro  # ✅ Use mac_pro (free tier supports this sometimes)
     environment:
       node: 20.11.1
       npm: 10.2.4
       xcode: latest
     scripts:
       - npm install
-      - chmod +x node_modules/.bin/vite  # 👈 THIS fixes the permission issue
+      - chmod +x node_modules/.bin/vite
       - npm run build
       - npx cap sync ios
     artifacts:
