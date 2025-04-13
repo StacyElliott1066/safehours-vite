@@ -1,0 +1,21 @@
+workflows:
+  build_ios:
+    name: Build iOS with Vite + Capacitor
+    environment:
+      node: 20.11.1
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - name: Install dependencies
+        script: npm install
+      - name: Build web assets
+        script: npm run build
+      - name: Copy assets to iOS
+        script: npx cap copy ios
+    artifacts:
+      - build/**/*
+      - ios/App/build/**/*
+    publishing:
+      email:
+        recipients:
+          - mr.stacy.m.elliott@gmail.com
